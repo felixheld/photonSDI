@@ -3,21 +3,14 @@
              TODO: Put logo here.
 	  Copyright 2017 / Felix Held
 
-      A small footprint and configurable USB core
-                powered by LiteX
+         An open source SDI core
+              powered by LiteX
 
 ![Funded by the German Ministry of Education and Science (BMBF)](doc/BMBF_gefoerdert_2017_en.jpg)
 
 ## Intro
 
-photonSDI provides a small footprint and configurable USB core.
-
-photonSDI is part of LiteX libraries whose aims are to lower entry level of
-complex FPGA cores by providing simple, elegant and efficient implementations
-of components used in today's SoC such as Ethernet, SATA, PCIe, SDRAM Controller...
-
-The core uses simple and specific streaming buses and will provides in the future
-adapters to use standardized AXI or Avalon-ST streaming buses.
+photonSDI provides an open source SDI core.
 
 Since Python is used to describe the HDL, the core is highly and easily
 configurable.
@@ -86,8 +79,8 @@ photonSDI is developed and maintained by Felix Held for the
 project.
 
 If you would like to know more about photonSDI or if you are already a happy
-user and would like to extend it for your needs, EnjoyDigital or Felix Held can
-provide standard commercial support as well as consulting services.
+user and would like to extend it for your needs, Felix Held can provide standard
+commercial support as well as consulting services.
 
 So feel free to contact us, we'd love to work with you! (and eventually shorten
 the list of the possible improvements :)
@@ -95,4 +88,3 @@ the list of the possible improvements :)
 ## Contact
 
  * E-mail: Felix Held <photonsdi [AT] felixheld.de>
- * E-mail: Florent Kermarrec <florent [AT] enjoy-digital.fr>
