@@ -23,6 +23,8 @@ M-Labs Ltd:
 photonSDI can be used as LiteX library or can be integrated with your standard
 design flow by generating the verilog rtl that you will use as a standard core.
 
+Since people already asked: Even though the development has slowed down, the project is still very much alive. As soon as the components are finished, tested and cleaned up, I'll release them.
+
 ## Features
 
 - None
