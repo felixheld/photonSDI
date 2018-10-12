@@ -70,7 +70,7 @@ do them if possible:
 ## Support and consulting
 
  * [Mailing list](https://groups.google.com/forum/#!forum/photonsdi/join)
- * [IRC Channel](irc://irc.freenode.net/#timvideos) ([Web version](https://webchat.freenode.net/?channels=#photonsdi,#m-labs,#timvideos,#apertus))
+ * [IRC Channel](irc://irc.freenode.net/#photonsdi) ([Web version](https://webchat.freenode.net/?channels=#photonsdi,#m-labs,#timvideos,#apertus))
 
 We love open-source hardware and like sharing our designs with others.
 
