@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 from litex.build.generic_platform import *
+from litex.build.xilinx import XilinxPlatform
 
 _io = [
     ("clk25", 0, Pins("C18"), IOStandard("LVCMOS18")),
@@ -149,3 +150,19 @@ _io = [
     ),
 ]
 
+
+class Platform(XilinxPlatform):
+    default_clk_name = "clk25"
+    default_clk_period = 40.0
+
+    def __init__(self):
+        XilinxPlatform.__init__(self, "xc7a35t-fgg484-2", _io, toolchain="vivado", programmer="vivado")
+        self.add_platform_command("""
+                set_property CFGBVS VCCO [current_design]
+                set_property CONFIG_VOLTAGE 3.3 [current_design]
+                """)
+        self.toolchain.bitstream_commands = \
+            ["set_property BITSTREAM.CONFIG.SPI_BUSWIDTH 4 [current_design]"]
+        self.toolchain.additional_commands = \
+            ["write_cfgmem -force -format bin -interface spix4 -size 16 "
+             "-loadbit \"up 0x0 top.bit\" -file top.bin"]
