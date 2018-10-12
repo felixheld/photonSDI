@@ -25,6 +25,10 @@ design flow by generating the verilog rtl that you will use as a standard core.
 
 Since people already asked: Even though the development has slowed down, the project is still very much alive. As soon as the components are finished, tested and cleaned up, I'll release them.
 
+## Targets
+
+- https://github.com/felixheld/AXIOM-photonSDI-hw
+
 ## Features
 
 - None
