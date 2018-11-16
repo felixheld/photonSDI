@@ -81,8 +81,8 @@ class SdiCrcEngine(Module):
 class SdiChannelCrc(Module):
     def __init__(self):
         self.i_data = Signal(SDI_ELEMENTARY_STREAM_DATA_WIDTH)
-        self.i_clear = Signal   # set next crc value to 0
-        self.i_enable = Signal  # use data at the clock cycle to calculate new crc
+        self.i_clear = Signal()     # set next crc value to 0
+        self.i_enable = Signal()    # use data at the clock cycle to calculate new crc
         self.o_crc = Signal(SDI_CRC_LENGTH) # output latency: 1 clock cycle
 
         ###
