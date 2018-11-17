@@ -1,0 +1,31 @@
+diff --git a/photonsdi/boards/platforms/axiom_photonsdi_hw.py b/photonsdi/boards/platforms/axiom_photonsdi_hw.py
+index 97624b5..a728089 100644
+--- a/photonsdi/boards/platforms/axiom_photonsdi_hw.py
++++ b/photonsdi/boards/platforms/axiom_photonsdi_hw.py
+@@ -28,11 +28,12 @@ _io = [
+     ("serial", 0,
+         Subsignal("tx", Pins("AA19")),
+         Subsignal("rx", Pins("AB20")),
+-        IOStandard("LVCMOS33")
++        IOStandard("LVCMOS33"),
++        Misc("PULLUP=TRUE")
+     ),
+ 
+-    ("aux", 0, Pins("AB18"), IOStandard("LVCMOS33")),
+-    ("aux", 1, Pins("AA18"), IOStandard("LVCMOS33")),
++    ("aux", 0, Pins("AB18"), IOStandard("LVCMOS33"), Misc("PULLUP=TRUE")),
++    ("aux", 1, Pins("AA18"), IOStandard("LVCMOS33"), Misc("PULLUP=TRUE")),
+ 
+     # main data connection to the axiom beta
+     ("axiom_data", 0,
+@@ -60,8 +61,8 @@ _io = [
+         Subsignal("s4n", Pins("W4")),   # swapped
+         Subsignal("s5p", Pins("AB7")),  # swapped
+         Subsignal("s5n", Pins("AB6")),  # swapped
+-        IOStandard("LVDS_25"),
+-        Misc("DIFF_TERM=TRUE"),
++        IOStandard("LVCMOS25"),
++        Misc("PULLUP=TRUE")
+     ),
+ 
+     ("sync_in", 0,
