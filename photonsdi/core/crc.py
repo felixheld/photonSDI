@@ -29,11 +29,11 @@ class SdiCrcEngine(Module):
         next CRC value.
     """
     def __init__(self, data_width, taps):
-        width = max(taps)
+        state_width = max(taps)
 
         self.data = Signal(data_width)
-        self.last_crc = Signal(width)
-        self.crc_out = Signal(width)
+        self.last_crc = Signal(state_width)
+        self.crc_out = Signal(state_width)
 
         ###
 
@@ -56,11 +56,11 @@ class SdiCrcEngine(Module):
 
         # compute and optimize the parallel implementation of the CRC's LFSR
         # note: SDI counts the CRC state bits in reverse order compared to IEEE 802.3 CRC
-        curval = [[("state", i)] for i in range(width)]
+        curval = [[("state", i)] for i in range(state_width)]
         curval.reverse()
         for i in range(data_width):
             feedback = curval.pop() + [("din", i)]
-            for j in range(width - 1):
+            for j in range(state_width - 1):
                 if j + 1 in taps:
                     curval[j] += feedback
                 curval[j] = _optimize_eq(curval[j])
@@ -68,7 +68,7 @@ class SdiCrcEngine(Module):
         curval.reverse()
 
         # implement logic
-        for i in range(width):
+        for i in range(state_width):
             xors = []
             for t, n in curval[i]:
                 if t == "state":
