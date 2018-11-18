@@ -5,7 +5,7 @@ from photonsdi.constants import *
 
 
 class SdiLfsrScrambler(Module):
-    def __init__(self, lfsr_taps, datapath_width = 2 * SDI_ELEMENTARY_STREAM_DATA_WIDTH):
+    def __init__(self, lfsr_taps, datapath_width):
         assert lfsr_taps
         lfsr_length = max(lfsr_taps)
 
