@@ -4,7 +4,7 @@ from migen import *
 from photonsdi.constants import *
 
 
-class AncHeaderEncode(Module):
+class AncHeaderWordEncode(Module):
     def __init__(self):
         self.i_data = Signal(8)
         self.o_data = Signal(SDI_ELEMENTARY_STREAM_DATA_WIDTH)
@@ -17,7 +17,7 @@ class AncHeaderEncode(Module):
         ]
 
 
-class AncHeaderDecode(Module):
+class AncHeaderWordDecode(Module):
     def __init__(self):
         self.i_data = Signal(SDI_ELEMENTARY_STREAM_DATA_WIDTH)
         self.o_data = Signal(8)
