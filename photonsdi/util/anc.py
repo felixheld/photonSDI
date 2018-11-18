@@ -5,7 +5,7 @@ from photonsdi.constants import *
 from photonsdi.util.encdec import *
 
 
-class AncHeaderWordEncode(Module):
+class AncHeaderWordEncoder(Module):
     def __init__(self):
         self.i_data = Signal(8)
         self.o_data = Signal(SDI_ELEMENTARY_STREAM_DATA_WIDTH)
@@ -14,7 +14,7 @@ class AncHeaderWordEncode(Module):
 
         parity = reduce(xor, [self.i_data[i] for i in range(8)])
 
-        self.submodules.enc9 += Sdi9BitEncode()
+        self.submodules.enc9 += Sdi9BitEncoder()
 
         self.comb += [
             self.enc9.i_data.eq(Cat(self.i_data, parity)),
@@ -22,7 +22,7 @@ class AncHeaderWordEncode(Module):
         ]
 
 
-class AncHeaderWordDecode(Module):
+class AncHeaderWordDecoder(Module):
     def __init__(self):
         self.i_data = Signal(SDI_ELEMENTARY_STREAM_DATA_WIDTH)
         self.o_data = Signal(8)
@@ -30,7 +30,7 @@ class AncHeaderWordDecode(Module):
 
         ###
 
-        self.submodules.dec9 += Sdi9BitDecode()
+        self.submodules.dec9 += Sdi9BitDecoder()
 
         parity = reduce(xor, [self.dec9.o_data[i] for i in range(8)])
 

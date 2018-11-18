@@ -7,7 +7,7 @@ from photonsdi.constants import *
 # value range
 
 
-class Sdi9BitEncode(Module):
+class Sdi9BitEncoder(Module):
     def __init__(self):
         self.i_data = Signal(9)
         self.o_data = Signal(SDI_ELEMENTARY_STREAM_DATA_WIDTH)
@@ -19,7 +19,7 @@ class Sdi9BitEncode(Module):
         ]
 
 
-class Sdi9BitDecode(Module):
+class Sdi9BitDecoder(Module):
     def __init__(self):
         self.i_data = Signal(SDI_ELEMENTARY_STREAM_DATA_WIDTH)
         self.o_data = Signal(9)
