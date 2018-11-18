@@ -5,7 +5,7 @@ from photonsdi.constants import *
 from photonsdi.util.encdec import *
 
 
-class AncHeaderWordEncoder(Module):
+class Anc8BitEncoder(Module):
     def __init__(self):
         self.i_data = Signal(8)
         self.o_data = Signal(SDI_ELEMENTARY_STREAM_DATA_WIDTH)
@@ -22,7 +22,7 @@ class AncHeaderWordEncoder(Module):
         ]
 
 
-class AncHeaderWordDecoder(Module):
+class Anc8BitDecoder(Module):
     def __init__(self):
         self.i_data = Signal(SDI_ELEMENTARY_STREAM_DATA_WIDTH)
         self.o_data = Signal(8)
