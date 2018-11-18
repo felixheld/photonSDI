@@ -56,6 +56,7 @@ class SdiCrcEngine(Module):
 
         # compute and optimize the parallel implementation of the CRC's LFSR
         # note: SDI counts the CRC state bits in reverse order compared to IEEE 802.3 CRC
+        # ITU R-REC-BT.2077-0 says: "CRCC0 is the MSB of the error detection code."
         curval = [[("state", i)] for i in range(state_width)]
         curval.reverse()
         for i in range(data_width):
