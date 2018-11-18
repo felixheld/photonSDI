@@ -5,7 +5,7 @@ from photonsdi.common import *
 
 
 class LfsrDescrambler(Module):
-    def __init__(self, lfsr_taps, datapath_width = 2 * SDI_ELEMENTARY_STREAM_DATA_WIDTH):
+    def __init__(self, lfsr_taps, datapath_width):
         assert lfsr_taps
         lfsr_length = max(lfsr_taps)
 
@@ -27,11 +27,14 @@ class LfsrDescrambler(Module):
 
 
 class Descrambler(Module):
-    def __init__(self, datapath_width = 2 * SDI_ELEMENTARY_STREAM_DATA_WIDTH):
+    def __init__(self, elementary_stream_count = 2):
+        assert elementary_stream_count in [2]
+        datapath_width = elementary_stream_count * SDI_ELEMENTARY_STREAM_DATA_WIDTH
+
         self.i_data = Signal(datapath_width)
         self.o_data = Signal(datapath_width)
 
-        assert datapath_width in [2 * SDI_ELEMENTARY_STREAM_DATA_WIDTH]
+        ###
 
         nrzi_output = Signal(datapath_width)
 
