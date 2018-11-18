@@ -1,10 +1,10 @@
 # photonSDI - an open source SDI core
 
              TODO: Put logo here.
-	  Copyright 2017 / Felix Held
+	  Copyright 2017-2018 / Felix Held
 
          An open source SDI core
-              powered by LiteX
+              powered by Migen and LiteX
 
 ![Funded by the German Ministry of Education and Science (BMBF)](doc/BMBF_gefoerdert_2017_en.jpg)
 
@@ -23,7 +23,7 @@ M-Labs Ltd:
 photonSDI can be used as LiteX library or can be integrated with your standard
 design flow by generating the verilog rtl that you will use as a standard core.
 
-Since people already asked: Even though the development has slowed down, the project is still very much alive. As soon as the components are finished, tested and cleaned up, I'll release them.
+Since people already asked: The project is still very much alive.
 
 ## Targets
 
