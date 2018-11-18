@@ -1,7 +1,7 @@
 from operator import xor
 
 from migen import *
-from photonsdi.common import *
+from photonsdi.constants import *
 
 
 class SdiLfsrScrambler(Module):
