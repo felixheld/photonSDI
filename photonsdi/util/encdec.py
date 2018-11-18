@@ -15,7 +15,7 @@ class Sdi9BitEncoder(Module):
         ###
 
         self.comb += [
-            self.o_data.eq(Cat(self.i_data, ~self.i_data[9]))
+            self.o_data.eq(Cat(self.i_data, ~self.i_data[8]))
         ]
 
 
