@@ -5,6 +5,14 @@ from photonsdi.constants import *
 from photonsdi.util.timing import *
 
 
+# (7, 3) code:
+_generator_matrix = [
+    [1, 0, 0, 1, 0, 1, 1],
+    [0, 1, 0, 1, 1, 0, 1],
+    [0, 0, 1, 1, 1, 1, 0]
+]
+
+
 class SdiXwzProtectionBitCalc(Module):
     def __init__(self):
         self.i_timing_flags = Record(SDI_TIMING_FLAGS)
