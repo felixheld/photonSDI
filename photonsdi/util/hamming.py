@@ -43,8 +43,8 @@ class HammingHelpers(object):
         sample_symbol = self._calc_symbol(sample_data, generator_matrix, n, k)
 
         for i in range(k):
-            # faulty symbol wth exactly one data bit flipped
-            faulty_symbol = [sample_symbol[j] if j != i else ~sample_symbol[j] for j in range (n)]
+            # faulty symbol with exactly one data bit flipped
+            faulty_symbol = [sample_symbol[j] ^ 1 if j == i else 0 for j in range (n)]
             syndrome = self._calc_syndrome(faulty_symbol, parity_check_matrix, n, k)
             syndrome_lut[syndrome] = i
 
