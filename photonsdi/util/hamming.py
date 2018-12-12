@@ -98,10 +98,10 @@ class HammingDecoder(Module, HammingHelpers):
 
         for i in range(k):
             self.comb += [
-                If(bit_flip_pos is None or i != bit_flip_pos,
-                    self.o_data[i].eq(self.i_data[i]),
-                ).Else(
+                If(bit_flip_pos is not None and i == bit_flip_pos,
                     self.o_data[i].eq(~self.i_data[i]),
+                ).Else(
+                    self.o_data[i].eq(self.i_data[i]),
                 )
             ]
 
