@@ -70,13 +70,13 @@ class SdiCrcEngine(Module):
 
         # implement logic
         for i in range(state_width):
-            xors = []
+            xor_list = []
             for t, n in curval[i]:
                 if t == "state":
-                    xors += [self.last_crc[n]]
+                    xor_list += [self.last_crc[n]]
                 elif t == "din":
-                    xors += [self.data[n]]
-            self.comb += self.crc_out[i].eq(reduce(xor, xors))
+                    xor_list += [self.data[n]]
+            self.comb += self.crc_out[i].eq(reduce(xor, xor_list))
 
 
 class SdiChannelCrc(Module):
