@@ -32,7 +32,7 @@ class HammingHelpers(object):
         syndrome = []
         for i in range(n - k):
             xor_list = [data[j] for j in range(n) if parity_check_matrix[i][j] != 0]
-            syndrome += reduce(xor, xor_list)  # TODO: verify if append results in the right sequence
+            syndrome += reduce(xor, xor_list)
         return syndrome
 
     def _generate_syndrome_mapping_lut(self, generator_matrix, parity_check_matrix, n, k):
