@@ -105,10 +105,4 @@ class HammingDecoder(Module, HammingHelpers):
                 )
             ]
 
-        self.comb += [
-            If(syndrome == 0,
-                self.o_corrected.eq(0)
-            ).Else(
-                self.o_corrected.eq(1)
-            )
-        ]
+        self.comb += self.o_corrected.eq(syndrome != 0)
