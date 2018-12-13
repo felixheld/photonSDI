@@ -1,35 +1,6 @@
-from operator import xor
-
 from migen import *
 from photonsdi.constants import *
-
-
-class SdiLfsrScrambler(Module):
-    def __init__(self, lfsr_taps, datapath_width):
-        assert lfsr_taps
-        lfsr_length = max(lfsr_taps)
-
-        self.i_data = Signal(datapath_width)
-        self.o_data = Signal(datapath_width)
-        self.i_last_state = Signal(lfsr_length)
-        self.o_state = Signal(lfsr_length)
-
-        ###
-
-        feedback_taps = lfsr_taps[:]
-        feedback_taps.remove(max(feedback_taps))
-
-        state = [self.i_last_state[i] for i in range(lfsr_length)]
-
-        for i in range(datapath_width):
-            state.append(reduce(xor, [state[tap] for tap in feedback_taps] + [self.i_data[i]]))
-            self.comb += [
-                self.o_state[i].eq(state.pop(0))
-            ]
-
-        self.comb += [
-            self.o_state.eq(Cat(*state[:lfsr_length]))
-        ]
+from photonsdi.util.lfsr import *
 
 
 class SdiScrambler(Module):
@@ -44,7 +15,7 @@ class SdiScrambler(Module):
 
         scrambler_out = Signal(datapath_width)
 
-        self.submodules.scrambler = SdiLfsrScrambler(SDI_SCRAMBLER_TAPS, datapath_width)
+        self.submodules.scrambler = LfsrScrambler(SDI_SCRAMBLER_TAPS, datapath_width)
 
         self.comb += [
             self.scrambler.input.eq(self.i_data)
@@ -54,7 +25,7 @@ class SdiScrambler(Module):
             self.scrambler.i_last_state.eq(self.scrambler.o_state)
         ]
 
-        self.submodules.nrzi = SdiLfsrScrambler(SDI_NRZI_TAPS, datapath_width)
+        self.submodules.nrzi = LfsrScrambler(SDI_NRZI_TAPS, datapath_width)
 
         self.comb += [
             self.nrzi.input.eq(scrambler_out)
