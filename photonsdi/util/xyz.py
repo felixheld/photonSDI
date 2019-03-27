@@ -1,5 +1,3 @@
-from operator import xor
-
 from migen import *
 from photonsdi.constants import *
 from photonsdi.util.timing import *
