@@ -39,12 +39,12 @@ class HammingHelpers(object):
         # currently only supports non-permutated generator matrix
 
         syndrome_lut = {}   # the case that syndrome is 0 is not covered in this dict
-        sample_data = [0 for i in range(k)]
+        sample_data = [0 for _ in range(k)]
         sample_symbol = self._calc_symbol(sample_data, generator_matrix, n, k)
 
         for i in range(k):
             # faulty symbol with exactly one data bit flipped
-            faulty_symbol = [sample_symbol[j] ^ 1 if j == i else 0 for j in range (n)]
+            faulty_symbol = [sample_symbol[j] ^ 1 if j == i else 0 for j in range(n)]
             syndrome = self._calc_syndrome(faulty_symbol, parity_check_matrix, n, k)
             syndrome_lut[syndrome] = i
 
