@@ -2,12 +2,17 @@ from migen import *
 from photonsdi.constants import *
 
 
+# horizontal timing: this is a bit confusing, but it's the SDI standard
+# * a line begins right after the last word of the active video data
+#   with an EAV packet containing the number of the new line
+# * after the blanking area the SAV packet follows which ends right before the
+#   wrap-around of the pixel counter
+# * at the wrap-around of the pixel counter to 0 the active video line starts
+
 SDI_H_TIMING_PARAMETERS = [
     ("h_total_line_length", SDI_LINE_LENGTH_WIDTH),  # 0-indexed
-    ("h_last_active_pixel", SDI_LINE_LENGTH_WIDTH),
-    ("h_begin_sav", SDI_LINE_LENGTH_WIDTH),
-    ("h_begin_eav", SDI_LINE_LENGTH_WIDTH)
-]  # TODO: document this, since it's very non-obvious
+    ("h_last_active_pixel", SDI_LINE_LENGTH_WIDTH)
+]
 
 SDI_V_TIMING_PARAMETERS = [
     ("v_total_line_number", SDI_LINE_NUMBER_WIDTH),  # 1-indexed

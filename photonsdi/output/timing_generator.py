@@ -30,6 +30,15 @@ class SdiTimingGenerator(Module):
             begin_sav = Signal()
             begin_eav = Signal()
 
+            h_begin_sav_pos = Signal()
+            h_begin_eav_pos = Signal()
+
+            # SAV is the last 4 words before the active video that starts at 0
+            self.comb += h_begin_sav_pos.eq(sink.h_total_line_length - 3)
+
+            # EAV begins right after the end of the active video area
+            self.comb += h_begin_eav_pos.eq(sink.h_last_active_pixel + 1)
+
             self.comb += field.eq(0)  # only support progressive image format
 
             self.comb += [
@@ -60,7 +69,7 @@ class SdiTimingGenerator(Module):
                     ),
 
                     # vertical timing generation pipeline stage
-                    If(h_counter[PIPELINE_H_GEN_STEP] == sink.h_begin_eav,
+                    If(h_counter[PIPELINE_H_GEN_STEP] == h_begin_eav_pos,
                         If(v_counter[PIPELINE_V_GEN_STEP] == sink.v_total_line_number,
                             v_counter[PIPELINE_V_GEN_STEP].eq(SDI_FIRST_LINE_NUMBER)
                         ).Else(
@@ -75,8 +84,8 @@ class SdiTimingGenerator(Module):
                         h_active.eq(0)
                     ),
 
-                    begin_sav.eq(h_counter[PIPELINE_TIMING_STEP] == sink.h_begin_sav),
-                    begin_eav.eq(h_counter[PIPELINE_TIMING_STEP] == sink.h_begin_eav),
+                    begin_sav.eq(h_counter[PIPELINE_TIMING_STEP] == h_begin_sav_pos),
+                    begin_eav.eq(h_counter[PIPELINE_TIMING_STEP] == h_begin_eav_pos),
 
                     If(v_counter[PIPELINE_TIMING_STEP] == sink.v_begin_active_video,
                         v_active.eq(1)
