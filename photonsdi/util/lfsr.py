@@ -23,7 +23,7 @@ class LfsrScrambler(Module):
         for i in range(datapath_width):
             state.append(reduce(xor, [state[tap] for tap in feedback_taps] + [self.i_data[i]]))
             self.comb += [
-                self.o_state[i].eq(state.pop(0))
+                self.o_data[i].eq(state.pop(0))
             ]
 
         self.comb += [
