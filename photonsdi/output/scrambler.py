@@ -18,7 +18,7 @@ class SdiScrambler(Module):
         self.submodules.scrambler = LfsrScrambler(SDI_SCRAMBLER_TAPS, datapath_width)
 
         self.comb += [
-            self.scrambler.input.eq(self.i_data)
+            self.scrambler.i_data.eq(self.i_data)
         ]
         self.sync += [
             scrambler_out.eq(self.scrambler.o_data),
@@ -28,7 +28,7 @@ class SdiScrambler(Module):
         self.submodules.nrzi = LfsrScrambler(SDI_NRZI_TAPS, datapath_width)
 
         self.comb += [
-            self.nrzi.input.eq(scrambler_out)
+            self.nrzi.i_data.eq(scrambler_out)
         ]
         self.sync += [
             self.o_data.eq(self.nrzi.o_data),
