@@ -19,7 +19,7 @@ class SdiXyzEncoder(Module):
 
         ###
 
-        self.submodules.hamming_calc += HammingEncoder(_generator_matrix)
+        self.submodules.hamming_calc = HammingEncoder(_generator_matrix)
 
         self.comb += [
             self.hamming_calc.i_data.eq(Cat(self.i_timing_flags.h,
@@ -40,7 +40,7 @@ class SdiXyzDecoder(Module):
 
         ###
 
-        self.submodules.hamming_dec += HammingDecoder(_generator_matrix)
+        self.submodules.hamming_dec = HammingDecoder(_generator_matrix)
 
         self.comb += [
             self.hamming_dec.i_data.eq(Cat(self.i_data[6:9], self.i_data[2:6])),
