@@ -94,8 +94,3 @@ class SdiTimingGenerator(Module):
 
         else:
             self.comb += genlock_stream.connect(source)
-
-
-if __name__ == "__main__":
-    from migen.fhdl.verilog import convert
-    convert(SdiTimingGenerator()).write("my_design.v")
