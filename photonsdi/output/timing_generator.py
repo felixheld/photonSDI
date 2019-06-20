@@ -7,7 +7,7 @@ from photonsdi.util.timing import *
 
 
 class SdiTimingGenerator(Module):
-    def __init__(self, genlock_stream = None):
+    def __init__(self, genlock_stream=None):
         # TODO: probably some stream handshaking signal generation missing
         self.sink = sink = stream.Endpoint(SDI_TIMING_PARAMETERS)  # module input
         self.source = source = stream.Endpoint(SDI_TIMING)  # module output
