@@ -88,7 +88,7 @@ class SdiChannelCrc(Module):
 
         ###
 
-        self.submodules.crc_engine += SdiCrcEngine(SDI_ELEMENTARY_STREAM_DATA_WIDTH, SDI_CRC_TAPS)
+        self.submodules.crc_engine = SdiCrcEngine(SDI_ELEMENTARY_STREAM_DATA_WIDTH, SDI_CRC_TAPS)
 
         next_last_crc = Signal(SDI_CRC_LENGTH)
 
