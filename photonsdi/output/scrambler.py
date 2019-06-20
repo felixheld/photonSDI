@@ -4,7 +4,7 @@ from photonsdi.util.lfsr import *
 
 
 class SdiScrambler(Module):
-    def __init__(self, elementary_stream_count = 2):
+    def __init__(self, elementary_stream_count=2):
         assert elementary_stream_count in [2]
         datapath_width = elementary_stream_count * SDI_ELEMENTARY_STREAM_DATA_WIDTH
 

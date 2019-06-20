@@ -6,7 +6,7 @@ from photonsdi.util.encdec import *
 class SdiLineNumberEncoder(Module):
     def __init__(self):
         self.i_line_number = Signal(SDI_LINE_NUMBER_WIDTH)
-        self.o_data = Signal(2 * SDI_ELEMENTARY_STREAM_DATA_WIDTH) # first data word in LSBs
+        self.o_data = Signal(2 * SDI_ELEMENTARY_STREAM_DATA_WIDTH)  # first data word in LSBs
 
         ###
 
@@ -22,7 +22,7 @@ class SdiLineNumberEncoder(Module):
 
 class SdiLineNumberDecoder(Module):
     def __init__(self):
-        self.i_data = Signal(2 * SDI_ELEMENTARY_STREAM_DATA_WIDTH) # first data word in LSBs
+        self.i_data = Signal(2 * SDI_ELEMENTARY_STREAM_DATA_WIDTH)  # first data word in LSBs
         self.o_line_number = Signal(SDI_LINE_NUMBER_WIDTH)
         self.o_valid = Signal()
 
