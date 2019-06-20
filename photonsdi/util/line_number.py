@@ -10,8 +10,8 @@ class SdiLineNumberEncoder(Module):
 
         ###
 
-        self.submodules.enc9_0 += Sdi9BitEncoder()
-        self.submodules.enc9_1 += Sdi9BitEncoder()
+        self.submodules.enc9_0 = Sdi9BitEncoder()
+        self.submodules.enc9_1 = Sdi9BitEncoder()
 
         self.comb += [
             self.enc9_0.i_data.eq(Cat(Replicate(0, 2), self.i_line_number[:7])),
@@ -28,8 +28,8 @@ class SdiLineNumberDecoder(Module):
 
         ###
 
-        self.submodules.dec9_0 += Sdi9BitDecoder()
-        self.submodules.dec9_1 += Sdi9BitDecoder()
+        self.submodules.dec9_0 = Sdi9BitDecoder()
+        self.submodules.dec9_1 = Sdi9BitDecoder()
 
         self.comb += [
             self.dec9_0.i_data.eq(self.i_data[:SDI_ELEMENTARY_STREAM_DATA_WIDTH]),

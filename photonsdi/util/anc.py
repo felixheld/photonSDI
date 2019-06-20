@@ -14,7 +14,7 @@ class Anc8BitEncoder(Module):
 
         parity = reduce(xor, [self.i_data[i] for i in range(8)])
 
-        self.submodules.enc9 += Sdi9BitEncoder()
+        self.submodules.enc9 = Sdi9BitEncoder()
 
         self.comb += [
             self.enc9.i_data.eq(Cat(self.i_data, parity)),
@@ -30,7 +30,7 @@ class Anc8BitDecoder(Module):
 
         ###
 
-        self.submodules.dec9 += Sdi9BitDecoder()
+        self.submodules.dec9 = Sdi9BitDecoder()
 
         parity = reduce(xor, [self.dec9.o_data[i] for i in range(8)])
 
