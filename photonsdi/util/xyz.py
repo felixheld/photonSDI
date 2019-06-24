@@ -14,7 +14,7 @@ _generator_matrix = [
 
 class SdiXyzEncoder(Module):
     def __init__(self):
-        self.i_timing_flags = Record(SDI_TIMING_FLAGS)
+        self.i_timing_flags = Record(SDI_XYZ_FLAGS)
         self.o_data = Signal(SDI_ELEMENTARY_STREAM_DATA_WIDTH)
 
         ###
@@ -35,7 +35,7 @@ class SdiXyzEncoder(Module):
 class SdiXyzDecoder(Module):
     def __init__(self):
         self.i_data = Signal(SDI_ELEMENTARY_STREAM_DATA_WIDTH)
-        self.o_timing_flags = Record(SDI_TIMING_FLAGS)
+        self.o_timing_flags = Record(SDI_XYZ_FLAGS)
         self.o_corrected = Signal()
 
         ###
