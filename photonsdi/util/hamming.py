@@ -6,11 +6,17 @@ from migen import *
 
 class HammingHelpers(object):
     @staticmethod
-    def _calc_symbol(data, generator_matrix, n, k):
-        symbol = []
+    def _calc_symbol_bits(data, generator_matrix, n, k):
+        symbol_xors = [[] for _ in range(n)]
         for i in range(n):
-            xor_list = [data[j] for j in range(k) if generator_matrix[i][j] != 0]
-            symbol += reduce(xor, xor_list)
+            symbol_xors[i] = [data[j] for j in range(k) if generator_matrix[j][i] != 0]
+        return symbol_xors
+
+    def _calc_symbol(self, data, generator_matrix, n, k):
+        symbol = []
+        symbol_xors = self._calc_symbol_bits(data, generator_matrix, n, k)
+        for i in range(n):
+            symbol += reduce(xor, symbol_xors[i])
         return symbol
 
     @staticmethod
@@ -65,7 +71,9 @@ class HammingEncoder(Module, HammingHelpers):
 
         ###
 
-        self.comb += self.o_data.eq(self._calc_symbol(self.i_data, generator_matrix, n, k))
+        symbol_bit_xors = self._calc_symbol_bits(self.i_data, generator_matrix, n, k)
+        for i in range(n):
+            self.comb += self.o_data[i].eq(reduce(xor, symbol_bit_xors[i]))
 
 
 class HammingDecoder(Module, HammingHelpers):
