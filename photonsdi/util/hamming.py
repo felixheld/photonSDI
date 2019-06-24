@@ -100,8 +100,8 @@ class HammingDecoder(Module, HammingHelpers):
             self.comb += data_syndrome[i].eq(reduce(xor, list(data_syndrome_xors[i])))
 
         for i in range(k):
-            bitflip_syndrome_i = Signal(k)
-            for j in range(k):
+            bitflip_syndrome_i = Signal(n - k)
+            for j in range(n - k):
                 self.comb += bitflip_syndrome_i[j].eq(bitflip_syndrome_lut[i][j])
 
             self.comb += [
