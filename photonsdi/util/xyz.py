@@ -49,5 +49,5 @@ class SdiXyzDecoder(Module):
             self.o_timing_flags.v.eq(self.hamming_dec.o_data[1]),
             self.o_timing_flags.f.eq(self.hamming_dec.o_data[2]),
 
-            self.o.corrected.eq(self.hamming_dec.o_corrected)
+            self.o_corrected.eq(self.hamming_dec.o_corrected)
         ]
