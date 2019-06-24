@@ -1,4 +1,3 @@
-from migen import *
 from photonsdi.constants import *
 
 
