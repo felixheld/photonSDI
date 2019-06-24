@@ -113,4 +113,3 @@ class HammingDecoder(Module, HammingHelpers):
             ]
 
         self.comb += self.o_corrected.eq(data_syndrome != 0)
-
